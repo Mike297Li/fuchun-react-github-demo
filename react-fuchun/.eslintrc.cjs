@@ -10,7 +10,7 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh','react','jest'],
   rules: {
     'react/jsx-no-target-blank': 'off',
     'react-refresh/only-export-components': [
@@ -18,4 +18,33 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  overrides: [
+    {
+      files: ['babel.config.cjs'],
+      env: {
+        node: true,
+      },
+    },
+    {
+      files: ['jest.config.cjs'],
+      env: {
+        node: true,
+      },
+    },
+    {
+      files: ['fileMock.js'],
+      env: {
+        node: true,
+      },
+    },
+    {
+      files: ['**/*.test.js'], // Apply the following settings to test files
+      env: {
+        jest: true // Add Jest environment
+      },
+      rules: {
+        // Any additional rules specific to test files
+      }
+    }
+  ],
 }
